@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ساعة مدرسة محمد بن سليمان الغافري</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(270deg, #1e3c72, #2a5298, #6dd5ed);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+            height: 90%;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .header img {
+            width: 150px;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.4);
+            animation: glow 3s infinite alternate, pulse 5s infinite;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .header img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 60px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .digital-clock {
+            font-size: 80px;
+            margin: 20px 0;
+            color: #fbc2eb;
+            text-shadow: 2px 2px 5px #000;
+        }
+
+        .day {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #a18cd1;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        .schedule {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #ff9a9e;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        .countdown-container {
+            margin-top: 20px;
+        }
+
+        .countdown {
+            font-size: 24px;
+            margin-top: 10px;
+            color: #fad0c4;
+            text-shadow: 1px 1px 3px #000;
+            animation: pulseCountdown 2s infinite;
+        }
+
+        @keyframes pulseCountdown {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .button-container {
+            margin-top: 10px;
+        }
+
+        button {
+            background: #ff9a9e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: #fbc2eb;
+            transform: scale(1.1);
+        }
+
+        .marquee-container {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 18px;
+            padding: 10px 0;
+            overflow: hidden;
+        }
+
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(white, transparent 50%);
+            background-size: 2px 2px;
+            animation: twinkling 10s infinite;
+        }
+
+        @keyframes twinkling {
+            0% {
+                background-position: 0 0;
+            }
+            50% {
+                background-position: 100px 100px;
+            }
+            100% {
+                background-position: 0 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://d.top4top.io/p_32865jkv41.png" alt="شعار مدرسة محمد بن سليمان الغافري">
+            <h1>مدرسة محمد بن سليمان الغافري</h1>
+        </div>
+        <div class="digital-clock" id="clock">00:00:00 مساءً</div>
+        <div class="day" id="day">الأحد</div>
+        <div class="schedule" id="schedule">خارج توقيت العمل</div>
+        <div class="countdown-container">
+            <div class="countdown" id="countdown">تدشين مشروع الصف الذكي بعد: 00 يوم، 00 ساعة، 00 دقيقة، 00 ثانية</div>
+        </div>
+        <div class="button-container">
+            <button onclick="window.open('https://example.com', '_blank')">اعرف المزيد</button>
+        </div>
+    </div>
+    <div class="marquee-container">
+        <div class="marquee">
+            <span>مشروع الصف الذكي: سيتم تدشين الشاشات التفاعلية كتجربة أولية في الصف التاسع/4 والصف الثامن/4. ترقبوا المزيد!</span>
+        </div>
+    </div>
+    <div class="stars"></div>
+    <script>
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'مساءً' : 'صباحًا';
+
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+
+            const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+            document.getElementById('day').textContent = days[now.getDay()];
+
+            updateSchedule(now);
+        }
+
+        function updateSchedule(now) {
+            const schedules = [
+                { start: '07:10', end: '07:25', text: 'طابور الصباح' },
+                { start: '07:25', end: '08:05', text: 'الحصة الأولى' },
+                { start: '08:10', end: '08:50', text: 'الحصة الثانية' },
+                { start: '08:55', end: '09:35', text: 'الحصة الثالثة' },
+                { start: '09:40', end: '10:20', text: 'الحصة الرابعة' },
+                { start: '10:20', end: '10:40', text: 'الفسحة' },
+                { start: '10:40', end: '11:20', text: 'الحصة الخامسة' },
+                { start: '11:25', end: '12:05', text: 'الحصة السادسة' },
+                { start: '12:10', end: '12:50', text: 'الحصة السابعة' },
+                { start: '12:55', end: '13:35', text: 'الحصة الثامنة' }
+            ];
+
+            const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+            const scheduleElement = document.getElementById('schedule');
+            let currentSchedule = 'خارج توقيت العمل';
+
+            schedules.forEach(schedule => {
+                if (currentTime >= schedule.start && currentTime < schedule.end) {
+                    currentSchedule = `الآن: ${schedule.text}`;
+                }
+            });
+
+            scheduleElement.textContent = currentSchedule;
+        }
+
+        function updateCountdown() {
+            const eventDate = new Date('2025-01-05T00:00:00');
+            const now = new Date();
+            const diff = eventDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('countdown').textContent = 'تم تدشين مشروع الصف الذكي!';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').textContent = `تدشين مشروع الصف الذكي بعد: ${days} يوم، ${hours} ساعة، ${minutes} دقيقة، ${seconds} ثانية`;
+        }
+
+        setInterval(updateClock, 1000);
+        setInterval(updateCountdown, 1000);
+
+        updateClock();
+        updateCountdown();
+    </script>
+</body>
+</html>
